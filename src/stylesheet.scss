@@ -50,7 +50,6 @@ $font-family: "Brandon Grotesque", Arial, Helvetica, sans-serif;
 .app-container {
 	font-family: $font-family;
 	color: $primary-blue;
-	height: 100vh;
 	width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -75,6 +74,52 @@ header {
 		p {
 			margin: 0px;
 			font-size: 1.5em;
+			color: $font-color;
+		}
+	}
+}
+
+.main-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 50px;
+
+	img {
+		height: 670px;
+		width: 520px;
+	}
+
+	.launch-data-container {
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+
+		.filter-boxes {
+			align-self: flex-end;
+			margin-bottom: 10px;
+
+			button {
+				padding: 0.5em 0.8em;
+				margin: 0 0.2em;
+				background-color: $primary-blue;
+				color: #f2f2f2;
+				border: none;
+			}
+		}
+
+		.launch-data {
+			height: 3em;
+			display: flex;
+			flex-direction: row;
+			margin: 0.5em 0;
+			align-items: center;
+			border-radius: 10px;
+			box-shadow: #545454 1px 1px 2px 2px;
+
+			h1,
+			h2 {
+				margin: 0 1em;
+			}
 		}
 	}
 }
