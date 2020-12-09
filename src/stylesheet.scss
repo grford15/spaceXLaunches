@@ -56,3 +56,25 @@ $font-family: "Brandon Grotesque", Arial, Helvetica, sans-serif;
 	justify-content: center;
 	align-items: center;
 }
+
+header {
+	position: absolute;
+	top: 0px;
+	display: flex;
+	width: 100vw;
+
+	.logo {
+		display: flex;
+		align-items: baseline;
+
+		img {
+			height: 30px;
+			width: 200px;
+		}
+
+		p {
+			margin: 0px;
+			font-size: 1.5em;
+		}
+	}
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import logo from "./assets/spacex-logo.png";
 import "./stylesheet.scss";
 
 class App extends Component {
@@ -23,7 +24,12 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app-container">
-				<h2>Space-X Launches</h2>
+				<header>
+					<div className="logo">
+						<img src={logo} alt="Logo" />
+						<p>Launches</p>
+					</div>
+				</header>
 			</div>
 		);
 	}
