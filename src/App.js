@@ -41,10 +41,15 @@ class App extends Component {
 						</div>
 						{launches.length > 0 &&
 							launches.map((launch, index) => {
+								const date = new Date(launch.date_utc);
 								return (
 									<div key={index} className="launch-data">
 										<h1>#{launch.flight_number}</h1>
 										<h2>{launch.name}</h2>
+										<div className="launch-details">
+											<p>{date.toDateString()}</p>
+											<p></p>
+										</div>
 									</div>
 								);
 							})}
