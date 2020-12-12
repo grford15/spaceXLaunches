@@ -123,7 +123,8 @@ header {
 			align-self: flex-end;
 			margin-bottom: 10px;
 
-			button {
+			button,
+			select {
 				padding: 0.5em 0.8em;
 				margin: 0 0.2em;
 				background-color: $primary-blue;

@@ -4,6 +4,7 @@ import logo from "./assets/spacex-logo.png";
 import launchHome from "./assets/img/launch-home.png";
 import refreshIcon from "./assets/icon/refresh.png";
 import LaunchDetail from "./component/LaunchDetail";
+import uniq from "lodash.uniq";
 import "./stylesheet.scss";
 
 class App extends Component {
@@ -37,6 +38,11 @@ class App extends Component {
 
 	render() {
 		const { launches } = this.state;
+		const launchYears = this.state.launches.map((launch) =>
+			new Date(launch.date_utc).getFullYear()
+		);
+		const uniqLaunchYears = uniq(launchYears);
+
 		return (
 			<div className="app-container">
 				<header>
@@ -53,7 +59,15 @@ class App extends Component {
 					<img src={launchHome} alt="spaceship launching" />
 					<div className="launch-data-container">
 						<div className="filter-boxes">
-							<button>Filter by Year</button>
+							<select>
+								{uniqLaunchYears.map((launchYear, index) => {
+									return (
+										<option value={launchYear} key={index}>
+											{launchYear}
+										</option>
+									);
+								})}
+							</select>
 							<button>Sort Descending</button>
 						</div>
 						{launches.length > 0 &&
