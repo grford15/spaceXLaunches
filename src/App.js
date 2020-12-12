@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import logo from "./assets/spacex-logo.png";
 import launchHome from "./assets/img/launch-home.png";
+import refreshIcon from "./assets/icon/refresh.png";
 import LaunchDetail from "./component/LaunchDetail";
 import "./stylesheet.scss";
 
@@ -11,16 +12,27 @@ class App extends Component {
 		this.state = {
 			launches: [],
 		};
+		this.getData = this.getData.bind(this);
+		this.reloadData = this.reloadData.bind(this);
 	}
 
 	componentDidMount() {
-		axios("https://api.spacexdata.com/v4/launches/")
+		this.getData("https://api.spacexdata.com/v4/launches/");
+	}
+
+	getData(url) {
+		axios(url)
 			.then((res) =>
 				this.setState({
 					launches: res.data,
 				})
 			)
 			.catch((err) => console.error(err));
+	}
+
+	reloadData() {
+		this.getData("https://api.spacexdata.com/v4/launches/");
+		console.log("Clicked");
 	}
 
 	render() {
@@ -31,6 +43,10 @@ class App extends Component {
 					<div className="logo">
 						<img src={logo} alt="Logo" />
 						<p>Launches</p>
+					</div>
+					<div className="refresh" onClick={this.reloadData}>
+						<p>Reload Data</p>
+						<img src={refreshIcon} alt="reload data button" />
 					</div>
 				</header>
 				<div className="main-content">
