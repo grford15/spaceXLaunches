@@ -81,12 +81,12 @@ header {
 
 .main-content {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 45% 55%;
 	margin-top: 50px;
 
 	img {
 		height: 670px;
-		width: 520px;
+		max-width: 100%;
 		margin-top: 3em;
 	}
 
@@ -94,6 +94,8 @@ header {
 		display: flex;
 		flex-direction: column;
 		width: 80%;
+		justify-self: end;
+		margin-right: 1em;
 
 		.filter-boxes {
 			align-self: flex-end;
@@ -105,21 +107,6 @@ header {
 				background-color: $primary-blue;
 				color: #f2f2f2;
 				border: none;
-			}
-		}
-
-		.launch-data {
-			height: 3em;
-			display: flex;
-			flex-direction: row;
-			margin: 0.5em 0;
-			align-items: center;
-			border-radius: 10px;
-			box-shadow: #545454 1px 1px 2px 2px;
-
-			h1,
-			h2 {
-				margin: 0 1em;
 			}
 		}
 	}

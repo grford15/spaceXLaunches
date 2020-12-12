@@ -1,0 +1,16 @@
+.launch-data {
+	height: 3em;
+	display: flex;
+	flex-direction: row;
+	margin: 0.3em 0;
+	align-items: center;
+	border-radius: 10px;
+	box-shadow: #54545431 1px 1px 2px 2px;
+	justify-content: space-between;
+	padding: 0.1em 0.4em;
+
+	h1,
+	h2 {
+		margin: 0 1em;
+	}
+}

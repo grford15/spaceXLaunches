@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import logo from "./assets/spacex-logo.png";
 import launchHome from "./assets/img/launch-home.png";
+import LaunchDetail from "./component/LaunchDetail";
 import "./stylesheet.scss";
 
 class App extends Component {
@@ -43,14 +44,12 @@ class App extends Component {
 							launches.map((launch, index) => {
 								const date = new Date(launch.date_utc);
 								return (
-									<div key={index} className="launch-data">
-										<h1>#{launch.flight_number}</h1>
-										<h2>{launch.name}</h2>
-										<div className="launch-details">
-											<p>{date.toDateString()}</p>
-											<p></p>
-										</div>
-									</div>
+									<LaunchDetail
+										key={index}
+										name={launch.name}
+										flight_number={launch.flight_number}
+										date={date}
+									/>
 								);
 							})}
 					</div>
