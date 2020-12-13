@@ -56,7 +56,7 @@ class App extends Component {
 
 	sortLaunches() {
 		const button = document.getElementById("sort-button");
-		if (this.state.sort === "" || "Ascending") {
+		if (this.state.sort.length < 1 || this.state.sort === "Ascending") {
 			const sortedLaunches = this.state.launches.sort((first, second) => {
 				let secondDate = new Date(second.date_utc);
 				let firstDate = new Date(first.date_utc);
@@ -67,7 +67,7 @@ class App extends Component {
 				sort: "Descending",
 			});
 			button.innerHTML = "Sort Ascending";
-		} else if (this.state === "Descending") {
+		} else {
 			const sortedLaunches = this.state.launches.sort((first, second) => {
 				let secondDate = new Date(second.date_utc);
 				let firstDate = new Date(first.date_utc);
@@ -75,7 +75,7 @@ class App extends Component {
 			});
 			this.setState({
 				launches: sortedLaunches,
-				sort: "Ascenidng",
+				sort: "Ascending",
 			});
 			button.innerHTML = "Sort Descending";
 		}
