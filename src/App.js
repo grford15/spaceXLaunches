@@ -12,6 +12,8 @@ class App extends Component {
 		super(props);
 		this.state = {
 			launches: [],
+			filteredLaunches: [],
+			filtered: false,
 		};
 		this.getData = this.getData.bind(this);
 		this.reloadData = this.reloadData.bind(this);
@@ -34,6 +36,9 @@ class App extends Component {
 
 	reloadData() {
 		this.getData("https://api.spacexdata.com/v4/launches/");
+		this.setState({
+			filtered: false,
+		});
 	}
 
 	filterByYear(e) {
@@ -41,11 +46,14 @@ class App extends Component {
 		const filteredByYearArray = this.state.launches.filter((launch) =>
 			launch.date_utc.includes(year)
 		);
-		// save filteredArray to state
+		this.setState({
+			filteredLaunches: filteredByYearArray,
+			filtered: true,
+		});
 	}
 
 	render() {
-		const { launches } = this.state;
+		const { launches, filtered, filteredLaunches } = this.state;
 		const launchYears = this.state.launches.map((launch) =>
 			new Date(launch.date_utc).getFullYear()
 		);
@@ -78,18 +86,29 @@ class App extends Component {
 							</select>
 							<button>Sort Descending</button>
 						</div>
-						{launches.length > 0 &&
-							launches.map((launch, index) => {
-								const date = new Date(launch.date_utc);
-								return (
-									<LaunchDetail
-										key={index}
-										name={launch.name}
-										flight_number={launch.flight_number}
-										date={date}
-									/>
-								);
-							})}
+						{launches.length > 0 && filtered
+							? filteredLaunches.map((launch, index) => {
+									const date = new Date(launch.date_utc);
+									return (
+										<LaunchDetail
+											key={index}
+											name={launch.name}
+											flight_number={launch.flight_number}
+											date={date}
+										/>
+									);
+							  })
+							: launches.map((launch, index) => {
+									const date = new Date(launch.date_utc);
+									return (
+										<LaunchDetail
+											key={index}
+											name={launch.name}
+											flight_number={launch.flight_number}
+											date={date}
+										/>
+									);
+							  })}
 					</div>
 				</div>
 			</div>
