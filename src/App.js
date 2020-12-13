@@ -15,6 +15,7 @@ class App extends Component {
 		};
 		this.getData = this.getData.bind(this);
 		this.reloadData = this.reloadData.bind(this);
+		this.filterByYear = this.filterByYear.bind(this);
 	}
 
 	componentDidMount() {
@@ -33,7 +34,14 @@ class App extends Component {
 
 	reloadData() {
 		this.getData("https://api.spacexdata.com/v4/launches/");
-		console.log("Clicked");
+	}
+
+	filterByYear(e) {
+		const year = e.target.value;
+		const filteredByYearArray = this.state.launches.filter((launch) =>
+			launch.date_utc.includes(year)
+		);
+		// save filteredArray to state
 	}
 
 	render() {
@@ -59,7 +67,7 @@ class App extends Component {
 					<img src={launchHome} alt="spaceship launching" />
 					<div className="launch-data-container">
 						<div className="filter-boxes">
-							<select>
+							<select onChange={this.filterByYear}>
 								{uniqLaunchYears.map((launchYear, index) => {
 									return (
 										<option value={launchYear} key={index}>
