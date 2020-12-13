@@ -14,10 +14,12 @@ class App extends Component {
 			launches: [],
 			filteredLaunches: [],
 			filtered: false,
+			sort: "",
 		};
 		this.getData = this.getData.bind(this);
 		this.reloadData = this.reloadData.bind(this);
 		this.filterByYear = this.filterByYear.bind(this);
+		this.sortLaunches = this.sortLaunches.bind(this);
 	}
 
 	componentDidMount() {
@@ -52,6 +54,33 @@ class App extends Component {
 		});
 	}
 
+	sortLaunches() {
+		const button = document.getElementById("sort-button");
+		if (this.state.sort === "" || "Ascending") {
+			const sortedLaunches = this.state.launches.sort((first, second) => {
+				let secondDate = new Date(second.date_utc);
+				let firstDate = new Date(first.date_utc);
+				return secondDate - firstDate;
+			});
+			this.setState({
+				launches: sortedLaunches,
+				sort: "Descending",
+			});
+			button.innerHTML = "Sort Ascending";
+		} else if (this.state === "Descending") {
+			const sortedLaunches = this.state.launches.sort((first, second) => {
+				let secondDate = new Date(second.date_utc);
+				let firstDate = new Date(first.date_utc);
+				return firstDate - secondDate;
+			});
+			this.setState({
+				launches: sortedLaunches,
+				sort: "Ascenidng",
+			});
+			button.innerHTML = "Sort Descending";
+		}
+	}
+
 	render() {
 		const { launches, filtered, filteredLaunches } = this.state;
 		const launchYears = this.state.launches.map((launch) =>
@@ -84,7 +113,9 @@ class App extends Component {
 									);
 								})}
 							</select>
-							<button>Sort Descending</button>
+							<button id="sort-button" onClick={this.sortLaunches}>
+								Sort Descending
+							</button>
 						</div>
 						{launches.length > 0 && filtered
 							? filteredLaunches.map((launch, index) => {
